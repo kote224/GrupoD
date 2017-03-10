@@ -1,11 +1,3 @@
-/**
- * @(#)Paleta.java
- *
- *
- * @author 
- * @version 1.00 2017/2/16
- */
-
 import java.awt.*;
 import java.applet.*;
 
