@@ -1,7 +1,6 @@
-import java.awt.*;
-import java.applet.*;
+import java.awt.Color;
 
-public class Paleta extends Block{
+public class Paleta extends Shape {
 	public static final int VELX =50;
 	public Paleta(){
 		super(300, 850, 200, 20, Color.red);
@@ -17,4 +16,8 @@ public class Paleta extends Block{
     		x=0;
 		
     }
+
+	public boolean isVisible() {
+		return visible;
+	}
 }

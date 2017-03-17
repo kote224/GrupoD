@@ -1,35 +1,17 @@
-/**
- * @(#)Block.java
- *
- *
- * @author 
- * @version 1.00 2017/2/15
- */
-import java.awt.*;
-import java.applet.*;
 
-public class Block extends Rectangle{
-	boolean visible = true;
+import java.awt.Color;
+
+public class Block extends Shape {
+	private boolean visible = true;
 	public Color color;
-	public Block(int px, int py, int anc, int alt, Color colores){
-		x = px;
-		y = py;
-		width = anc;
-		height = alt;
-		color = colores;
-		
-		
-    }
-    
-    public void dibujar(Graphics g){
-    	if(visible){
-    	g.setColor(color);
-    	g.fillRect(x, y, width, height);
-    	}
-    }
-    public void actualizar(){
-    	
-    }
-    
-    
+
+	public Block(int x, int y, int width, int height, Color color) {
+		super(x, y, width, height, color);
+
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
 }
