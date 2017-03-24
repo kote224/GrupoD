@@ -3,7 +3,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 
-abstract class Shape extends Rectangle {
+public abstract class Shape extends Rectangle {
 	private Color color;
 	protected boolean visible = true;
 	public Shape(int x, int y, int width, int height, Color color) {
