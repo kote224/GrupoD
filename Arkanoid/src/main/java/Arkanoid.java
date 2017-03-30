@@ -49,16 +49,16 @@ public class Arkanoid extends Applet implements Runnable{
 		noseve.setColor(Color.black);
 		noseve.fillRect(0,0,1000,900);
 		for (int i = 0; i<bloques.size(); i++)
-				bloques.get(i).dibujar(noseve);	
-		bola.dibujar(noseve);
-		paleta.dibujar(noseve);
+				bloques.get(i).draw(noseve);	
+		bola.draw(noseve);
+		paleta.draw(noseve);
 		if(bola.isGameOver()){
 			noseve.setColor(Color.white);
-			noseve.drawString("GAME OVER", 450, 450);
+			noseve.drawString("GAME OVER", 500, 450);
 		}
 		if(ganador){
 			noseve.setColor(Color.white);
-			noseve.drawString("ERES UN CHAMPION", 450, 450);
+			noseve.drawString("ERES UN CHAMPION", 500, 450);
 			bola.setVelX(0);
 			bola.setVelY(0);
 		}
