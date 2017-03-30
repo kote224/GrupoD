@@ -1,3 +1,8 @@
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -15,34 +20,54 @@ public class ShapeTest {
 
 	Shape shape;
 
-	@Before
-	public void setUp() throws Exception {
+	@Test
+	public void testShapeBounds() {
+		shape = new MyShapeVisibleTrue(0, 0, 1, 2, Color.BLUE);
+		Assert.assertEquals(0, shape.getBounds2D().getY(), 0);
+		Assert.assertEquals(0, shape.getBounds2D().getX(), 0);
+		Assert.assertEquals(1, shape.getBounds2D().getWidth(), 0);
+		Assert.assertEquals(2, shape.getBounds2D().getHeight(), 0);
 	}
 
 	@Test
-	public void testDibujarWhenShapeIsNotVisible() {
+	public void testDrawWhenShapeIsNotVisible() {
 		shape = new MyShapeVisibleFalse(0, 0, 0, 0, Color.BLUE);
 		Graphics g = new GraphipcsTest();
-		shape.dibujar(g);
+		shape.draw(g);
 		Assert.assertEquals(Color.BLUE, shape.getColor());
 		Assert.assertNull(g.getColor());
 
 	}
 
 	@Test
-	public void testDibujarWhenShapeIsVisible() {
-		shape = new MyShapeVisibleTrue(0, 0, 0, 0, Color.BLUE);
+	public void testDrawWhenShapeIsVisible() {
+		shape = new MyShapeVisibleTrue(0, 0, 1, 2, Color.BLUE);
 		Graphics g = new GraphipcsTest();
-		shape.dibujar(g);
-		Assert.assertEquals(Color.BLUE, shape.getColor());
+		shape.draw(g);
 		Assert.assertNotNull(g.getColor());
+		Assert.assertEquals(0, g.getClipBounds().getY(), 0);
+		Assert.assertEquals(0, g.getClipBounds().getX(), 0);
+		Assert.assertEquals(1, g.getClipBounds().getWidth(), 0);
+		Assert.assertEquals(2, g.getClipBounds().getHeight(), 0);
+	}
 
+	@Test
+	public void testDrawWhenShapeIsVisibleWithMockGraphics() {
+		shape = new MyShapeVisibleTrue(0, 0, 1, 2, Color.BLUE);
+		Graphics g = mock(Graphics.class);
+		shape.draw(g);
+		verify(g).setColor(Color.BLUE);
+		verify(g).fillRect(eq(0), eq(0), anyInt(), anyInt());
 	}
 
 	@Test
 	public void testColor() {
 		shape = new MyShapeVisibleFalse(0, 0, 0, 0, Color.BLUE);
 		Assert.assertEquals(Color.BLUE, shape.getColor());
+	}
+
+	@Before
+	public void setUp() throws Exception {
 	}
 
 	class MyShapeVisibleTrue extends Shape {
@@ -73,6 +98,7 @@ public class ShapeTest {
 	class GraphipcsTest extends Graphics {
 
 		private Color color;
+		private Rectangle rectangle;
 
 		@Override
 		public Graphics create() {
@@ -128,8 +154,7 @@ public class ShapeTest {
 
 		@Override
 		public Rectangle getClipBounds() {
-			// TODO Auto-generated method stub
-			return null;
+			return rectangle;
 		}
 
 		@Override
@@ -170,7 +195,7 @@ public class ShapeTest {
 
 		@Override
 		public void fillRect(int x, int y, int width, int height) {
-			// TODO Auto-generated method stub
+			rectangle = new Rectangle(x, y, width, height);
 
 		}
 
