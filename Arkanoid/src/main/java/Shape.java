@@ -11,10 +11,11 @@ public abstract class Shape extends Rectangle {
 		this.setColor(color);
 	}
 
-	public void dibujar(Graphics g) {
+	public void draw(Graphics g) {
 		if (isVisible()) {
-			g.setColor(color);
 			g.fillRect(x, y, width, height);
+			g.setColor(color);
+
 		}
 	}
 

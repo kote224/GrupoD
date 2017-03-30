@@ -19,7 +19,7 @@ public class Bola extends Shape {
 		return (int)((Math.random() * 3) + 1);
 	}
 
-    public void dibujar(Graphics g){
+    public void draw(Graphics g){
     	g.setColor(getColor());
     	g.fillOval(x, y, width, height);
     }
