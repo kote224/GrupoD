@@ -1,6 +1,5 @@
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import java.awt.Color;
@@ -15,8 +14,15 @@ import java.text.AttributedCharacterIterator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ShapeTest {
+
+	@Mock
+	Graphics g;
 
 	Shape shape;
 
@@ -35,7 +41,6 @@ public class ShapeTest {
 		Graphics g = new GraphipcsTest();
 		shape.draw(g);
 		Assert.assertEquals(Color.BLUE, shape.getColor());
-		Assert.assertNull(g.getColor());
 
 	}
 
@@ -54,7 +59,6 @@ public class ShapeTest {
 	@Test
 	public void testDrawWhenShapeIsVisibleWithMockGraphics() {
 		shape = new MyShapeVisibleTrue(0, 0, 1, 2, Color.BLUE);
-		Graphics g = mock(Graphics.class);
 		shape.draw(g);
 		verify(g).setColor(Color.BLUE);
 		verify(g).fillRect(eq(0), eq(0), anyInt(), anyInt());
