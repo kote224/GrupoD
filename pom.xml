@@ -12,6 +12,8 @@
 
 	<modules>
 		<module>Arkanoid</module>
+		<module>botones</module>
+		<module>arquero</module>
 	</modules>
 	
 	
